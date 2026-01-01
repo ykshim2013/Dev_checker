@@ -1,4 +1,5 @@
-// Comprehensive developmental milestones database
+// Developmental milestones based on CDC "Learn the Signs. Act Early" guidelines
+// Source: https://www.cdc.gov/ncbddd/actearly/milestones/index.html
 const milestones = [
     {
         ageRange: "2 months",
@@ -6,23 +7,23 @@ const milestones = [
         maxMonths: 2,
         categories: {
             "Social & Emotional": [
-                "Begins to smile at people",
-                "Can briefly calm themselves (may bring hands to mouth)",
-                "Tries to look at parent"
+                "Calms down when spoken to or picked up",
+                "Looks at your face",
+                "Seems happy to see you when you walk up to them",
+                "Smiles when you talk to or smile at them"
             ],
             "Language & Communication": [
-                "Coos and makes gurgling sounds",
-                "Turns head toward sounds"
+                "Makes sounds other than crying",
+                "Reacts to loud sounds"
             ],
             "Cognitive": [
-                "Pays attention to faces",
-                "Begins to follow things with eyes",
-                "Recognizes people at a distance"
+                "Watches you as you move",
+                "Looks at a toy for several seconds"
             ],
             "Motor Skills": [
-                "Can hold head up",
-                "Begins to push up when lying on tummy",
-                "Makes smoother movements with arms and legs"
+                "Holds head up when on tummy",
+                "Moves both arms and both legs",
+                "Briefly opens fingers when hand is relaxed"
             ]
         }
     },
@@ -32,26 +33,25 @@ const milestones = [
         maxMonths: 5,
         categories: {
             "Social & Emotional": [
-                "Smiles spontaneously, especially at people",
-                "Likes to play with people",
-                "Copies some movements and facial expressions"
+                "Smiles on their own to get your attention",
+                "Chuckles (not yet a full laugh) when you try to make them laugh",
+                "Looks at you, moves, or makes sounds to get or keep your attention"
             ],
             "Language & Communication": [
-                "Begins to babble",
-                "Babbles with expression and copies sounds heard",
-                "Cries in different ways to show hunger, pain, or being tired"
+                "Makes sounds like 'oooo', 'aahh' (cooing)",
+                "Makes sounds back when you talk to them",
+                "Turns head towards the sound of your voice"
             ],
             "Cognitive": [
-                "Lets you know if they are happy or sad",
-                "Responds to affection",
-                "Reaches for toy with one hand",
-                "Uses hands and eyes together"
+                "If hungry, opens mouth when they see breast or bottle",
+                "Looks at their hands with interest"
             ],
             "Motor Skills": [
-                "Holds head steady, unsupported",
-                "Pushes down on legs when feet are on a hard surface",
-                "May be able to roll over from tummy to back",
-                "Can hold a toy and shake it"
+                "Holds head steady without support when you are holding them",
+                "Holds a toy when you put it in their hand",
+                "Uses their arm to swing at toys",
+                "Brings hands to mouth",
+                "Pushes up onto elbows/forearms when on tummy"
             ]
         }
     },
@@ -61,28 +61,24 @@ const milestones = [
         maxMonths: 7,
         categories: {
             "Social & Emotional": [
-                "Knows familiar faces and begins to know if someone is a stranger",
-                "Likes to play with others, especially parents",
-                "Responds to other people's emotions",
-                "Likes to look at self in a mirror"
+                "Knows familiar people",
+                "Likes to look at self in a mirror",
+                "Laughs"
             ],
             "Language & Communication": [
-                "Responds to sounds by making sounds",
-                "Strings vowels together when babbling",
-                "Responds to own name",
-                "Makes sounds to show joy and displeasure"
+                "Takes turns making sounds with you",
+                "Blows 'raspberries' (sticks tongue out and blows)",
+                "Makes squealing noises"
             ],
             "Cognitive": [
-                "Looks around at things nearby",
-                "Brings things to mouth",
-                "Shows curiosity and tries to get things that are out of reach",
-                "Begins to pass things from one hand to the other"
+                "Puts things in their mouth to explore them",
+                "Reaches to grab a toy they want",
+                "Closes lips to show they don't want more food"
             ],
             "Motor Skills": [
-                "Rolls over in both directions",
-                "Begins to sit without support",
-                "Supports weight on legs and might bounce",
-                "Rocks back and forth"
+                "Rolls from tummy to back",
+                "Pushes up with straight arms when on tummy",
+                "Leans on hands to support themselves when sitting"
             ]
         }
     },
@@ -92,28 +88,25 @@ const milestones = [
         maxMonths: 10,
         categories: {
             "Social & Emotional": [
-                "May be afraid of strangers",
-                "May be clingy with familiar adults",
-                "Has favorite toys"
+                "Is shy, clingy, or fearful around strangers",
+                "Shows several facial expressions, like happy, sad, angry, and surprised",
+                "Looks when you call their name",
+                "Reacts when you leave (looks, reaches for you, or cries)",
+                "Smiles or laughs when you play peek-a-boo"
             ],
             "Language & Communication": [
-                "Understands 'no'",
-                "Makes many different sounds like 'mamamama' and 'bababababa'",
-                "Copies sounds and gestures of others",
-                "Uses fingers to point at things"
+                "Makes different sounds like 'mamamama' and 'bababababa'",
+                "Lifts arms up to be picked up"
             ],
             "Cognitive": [
-                "Watches the path of something as it falls",
-                "Looks for things they see you hide",
-                "Plays peek-a-boo",
-                "Puts things in mouth"
+                "Looks for objects when dropped out of sight (like their spoon or toy)",
+                "Bangs two things together"
             ],
             "Motor Skills": [
-                "Stands, holding on",
-                "Can get into sitting position",
-                "Sits without support",
-                "Pulls to stand",
-                "Crawls"
+                "Gets to a sitting position by themselves",
+                "Moves things from one hand to their other hand",
+                "Uses fingers to 'rake' food towards themselves",
+                "Sits without support"
             ]
         }
     },
@@ -123,138 +116,165 @@ const milestones = [
         maxMonths: 13,
         categories: {
             "Social & Emotional": [
-                "Is shy or nervous with strangers",
-                "Cries when parent leaves",
-                "Has favorite things and people",
-                "Shows fear in some situations",
-                "Hands you a book when wanting to hear a story"
+                "Plays games with you, like pat-a-cake"
             ],
             "Language & Communication": [
-                "Responds to simple spoken requests",
-                "Uses simple gestures, like shaking head 'no' or waving 'bye-bye'",
-                "Makes sounds with changes in tone",
-                "Says 'mama' and 'dada' and exclamations like 'uh-oh!'",
-                "Tries to say words you say"
+                "Waves 'bye-bye'",
+                "Calls a parent 'mama' or 'dada' or another special name",
+                "Understands 'no' (pauses briefly or stops when you say it)"
             ],
             "Cognitive": [
-                "Explores things in different ways",
-                "Finds hidden things easily",
-                "Looks at the right picture or thing when it's named",
-                "Copies gestures",
-                "Puts things in and takes things out of containers"
+                "Puts something in a container, like a block in a cup",
+                "Looks for things they see you hide, like a toy under a blanket"
             ],
             "Motor Skills": [
-                "Gets to a sitting position without help",
-                "Pulls up to stand, walks holding on to furniture",
-                "May take a few steps without holding on",
-                "May stand alone"
+                "Pulls up to stand",
+                "Walks, holding on to furniture",
+                "Drinks from a cup without a lid, as you hold it",
+                "Picks things up between thumb and pointer finger, like small bits of food"
+            ]
+        }
+    },
+    {
+        ageRange: "15 months",
+        minMonths: 14,
+        maxMonths: 16,
+        categories: {
+            "Social & Emotional": [
+                "Copies other children while playing, like taking toys out of a container when another child does",
+                "Shows you an object they like",
+                "Claps when excited",
+                "Hugs stuffed doll or other toy",
+                "Shows you affection (hugs, cuddles, or kisses you)"
+            ],
+            "Language & Communication": [
+                "Tries to say one or two words besides 'mama' or 'dada', like 'ba' for ball or 'da' for dog",
+                "Looks at a familiar object when you name it",
+                "Follows directions given with both a gesture and words",
+                "Points to ask for something or to get help"
+            ],
+            "Cognitive": [
+                "Tries to use things the right way, like a phone, cup, or book",
+                "Stacks at least two small objects, like blocks"
+            ],
+            "Motor Skills": [
+                "Takes a few steps on their own",
+                "Uses fingers to feed themselves some food"
             ]
         }
     },
     {
         ageRange: "18 months",
-        minMonths: 14,
+        minMonths: 17,
         maxMonths: 20,
         categories: {
             "Social & Emotional": [
-                "Likes to hand things to others as play",
-                "May have temper tantrums",
-                "May be afraid of strangers",
-                "Shows affection to familiar people",
-                "Plays simple pretend games"
+                "Moves away from you, but looks to make sure you are close by",
+                "Points to show you something interesting",
+                "Puts hands out for you to wash them",
+                "Looks at a few pages in a book with you",
+                "Helps you dress them by pushing arm through sleeve or lifting up foot"
             ],
             "Language & Communication": [
-                "Says several single words",
-                "Says and shakes head 'no'",
-                "Points to show someone what they want"
+                "Tries to say three or more words besides 'mama' or 'dada'",
+                "Follows one-step directions without any gestures, like giving you the toy when you say 'Give it to me'"
             ],
             "Cognitive": [
-                "Knows what ordinary things are for",
-                "Points to get the attention of others",
-                "Shows interest in a doll or stuffed animal by pretending to feed",
-                "Points to one body part",
-                "Scribbles on their own"
+                "Copies you doing chores, like sweeping with a broom",
+                "Plays with toys in a simple way, like pushing a toy car"
             ],
             "Motor Skills": [
-                "Walks alone",
-                "May walk up steps and run",
-                "Pulls toys while walking",
-                "Can help undress themselves",
-                "Drinks from a cup",
-                "Eats with a spoon"
+                "Walks without holding on to anyone or anything",
+                "Scribbles",
+                "Drinks from a cup without a lid, as you hold it",
+                "Feeds themselves with their fingers",
+                "Tries to use a spoon",
+                "Climbs on and off a couch or chair without help"
             ]
         }
     },
     {
         ageRange: "2 years",
         minMonths: 21,
-        maxMonths: 30,
+        maxMonths: 27,
         categories: {
             "Social & Emotional": [
-                "Copies others, especially adults and older children",
-                "Gets excited when with other children",
-                "Shows more and more independence",
-                "Shows defiant behavior",
-                "Plays mainly beside other children"
+                "Notices when others are hurt or upset, like pausing or looking sad when someone is crying",
+                "Looks at your face to see how to react in a new situation"
             ],
             "Language & Communication": [
-                "Points to things or pictures when they are named",
-                "Knows names of familiar people and body parts",
-                "Says sentences with 2 to 4 words",
-                "Follows simple instructions",
-                "Repeats words overheard in conversation"
+                "Points to things in a book when you ask, like 'Where is the bear?'",
+                "Says at least two words together, like 'More milk'",
+                "Points to at least two body parts when you ask them to show you",
+                "Uses more gestures than just waving and pointing, like blowing a kiss or nodding yes"
             ],
             "Cognitive": [
-                "Finds things even when hidden under two or three covers",
-                "Begins to sort shapes and colors",
-                "Completes sentences and rhymes in familiar books",
-                "Plays simple make-believe games",
-                "Builds towers of 4 or more blocks"
+                "Holds something in one hand while using the other hand; for example, holding a container and taking the lid off",
+                "Tries to use switches, knobs, or buttons on a toy",
+                "Plays with more than one toy at the same time, like putting toy food on a toy plate"
             ],
             "Motor Skills": [
-                "Stands on tiptoe",
                 "Kicks a ball",
-                "Begins to run",
-                "Climbs onto and down from furniture without help",
-                "Walks up and down stairs holding on",
-                "Throws ball overhand"
+                "Runs",
+                "Walks (not climbs) up a few stairs with or without help",
+                "Eats with a spoon"
+            ]
+        }
+    },
+    {
+        ageRange: "30 months (2.5 years)",
+        minMonths: 28,
+        maxMonths: 33,
+        categories: {
+            "Social & Emotional": [
+                "Plays next to other children and sometimes plays with them",
+                "Shows you what they can do by saying, 'Look at me!'",
+                "Follows simple routines when told, like helping to pick up toys when you say, 'It's clean-up time'"
+            ],
+            "Language & Communication": [
+                "Says about 50 words",
+                "Says two or more words together, with one action word, like 'Doggie run'",
+                "Names things in a book when you point and ask, 'What is this?'",
+                "Says words like 'I,' 'me,' or 'we'"
+            ],
+            "Cognitive": [
+                "Uses things to pretend, like feeding a block to a doll as if it were food",
+                "Shows simple problem-solving skills, like standing on a small stool to reach something",
+                "Follows two-step instructions such as 'Put the toy down and close the door'",
+                "Shows they know at least one color, like pointing to a red crayon when you ask, 'Which one is red?'"
+            ],
+            "Motor Skills": [
+                "Uses hands to twist things, like turning doorknobs or unscrewing lids",
+                "Takes some clothes off by themselves, like loose pants or an open jacket",
+                "Jumps off the ground with both feet",
+                "Turns book pages, one at a time, when you read to them"
             ]
         }
     },
     {
         ageRange: "3 years",
-        minMonths: 31,
+        minMonths: 34,
         maxMonths: 42,
         categories: {
             "Social & Emotional": [
-                "Copies adults and friends",
-                "Shows affection for friends without prompting",
-                "Takes turns in games",
-                "Shows concern for crying friend",
-                "Understands the idea of 'mine' and 'his' or 'hers'",
-                "Shows a wide range of emotions"
+                "Calms down within 10 minutes after you leave them, like at a childcare drop off",
+                "Notices other children and joins them to play"
             ],
             "Language & Communication": [
-                "Follows instructions with 2 or 3 steps",
-                "Can name most familiar things",
-                "Understands words like 'in,' 'on,' and 'under'",
-                "Says first name, age, and sex",
-                "Names a friend",
-                "Uses pronouns (I, you, me, we, they)"
+                "Talks with you in conversation using at least two back-and-forth exchanges",
+                "Asks 'who,' 'what,' 'where,' or 'why' questions, like 'Where is mommy/daddy?'",
+                "Says what action is happening in a picture or book when asked, like 'running,' 'eating,' or 'playing'",
+                "Says first name, when asked",
+                "Talks well enough for others to understand, most of the time"
             ],
             "Cognitive": [
-                "Can work toys with buttons, levers, and moving parts",
-                "Plays make-believe with dolls, animals, and people",
-                "Does puzzles with 3 or 4 pieces",
-                "Understands what 'two' means",
-                "Copies a circle with pencil or crayon",
-                "Turns book pages one at a time"
+                "Draws a circle, when you show them how",
+                "Avoids touching hot objects, like a stove, when you warn them"
             ],
             "Motor Skills": [
-                "Climbs well",
-                "Runs easily",
-                "Pedals a tricycle",
-                "Walks up and down stairs, one foot on each step"
+                "Strings items together, like large beads or macaroni",
+                "Puts on some clothes by themselves, like loose pants or a jacket",
+                "Uses a fork"
             ]
         }
     },
@@ -264,31 +284,29 @@ const milestones = [
         maxMonths: 54,
         categories: {
             "Social & Emotional": [
-                "Enjoys doing new things",
-                "Plays 'Mom' and 'Dad'",
-                "Is more and more creative with make-believe play",
-                "Would rather play with other children than by themselves",
-                "Cooperates with other children",
-                "Talks about what they like and are interested in"
+                "Pretends to be something else during play (teacher, superhero, dog)",
+                "Asks to go play with children if none are around, like 'Can I play with Alex?'",
+                "Comforts others who are hurt or sad, like hugging a crying friend",
+                "Avoids danger, like not jumping from tall heights at the playground",
+                "Likes to be a 'helper'",
+                "Changes behavior based on where they are (place of worship, library, playground)"
             ],
             "Language & Communication": [
-                "Knows some basic rules of grammar",
-                "Sings a song or says a poem from memory",
-                "Tells stories",
-                "Can say first and last name"
+                "Says sentences with four or more words",
+                "Says some words from a song, story, or nursery rhyme",
+                "Talks about at least one thing that happened during their day, like 'I played soccer'",
+                "Answers simple questions like 'What is a coat for?' or 'What is a crayon for?'"
             ],
             "Cognitive": [
-                "Names some colors and some numbers",
-                "Understands the idea of counting",
-                "Starts to understand time",
-                "Remembers parts of a story",
-                "Understands the idea of 'same' and 'different'",
-                "Draws a person with 2 to 4 body parts"
+                "Names a few colors of items",
+                "Tells what comes next in a well-known story",
+                "Draws a person with three or more body parts"
             ],
             "Motor Skills": [
-                "Hops and stands on one foot up to 2 seconds",
-                "Catches a bounced ball most of the time",
-                "Pours, cuts with supervision, and mashes own food"
+                "Catches a large ball most of the time",
+                "Serves themselves food or pours water, with adult supervision",
+                "Unbuttons some buttons",
+                "Holds crayon or pencil between fingers and thumb (not a fist)"
             ]
         }
     },
@@ -298,32 +316,27 @@ const milestones = [
         maxMonths: 72,
         categories: {
             "Social & Emotional": [
-                "Wants to please friends",
-                "Wants to be like friends",
-                "More likely to agree with rules",
-                "Likes to sing, dance, and act",
-                "Is aware of gender",
-                "Can tell what's real and what's make-believe"
+                "Follows rules or takes turns when playing games with other children",
+                "Sings, dances, or acts for you",
+                "Does simple chores at home, like matching socks or clearing the table after eating"
             ],
             "Language & Communication": [
-                "Speaks very clearly",
-                "Tells a simple story using full sentences",
-                "Uses future tense",
-                "Says name and address"
+                "Tells a story they heard or made up with at least two events",
+                "Answers simple questions about a book or story after you read or tell it to them",
+                "Keeps a conversation going with more than three back-and-forth exchanges",
+                "Uses or recognizes simple rhymes (bat-cat, ball-tall)"
             ],
             "Cognitive": [
-                "Counts 10 or more things",
-                "Can draw a person with at least 6 body parts",
-                "Can print some letters or numbers",
-                "Copies a triangle and other geometric shapes",
-                "Knows about things used every day, like money and food"
+                "Counts to 10",
+                "Names some numbers between 1 and 5 when you point to them",
+                "Uses words about time, like 'yesterday,' 'tomorrow,' 'morning,' or 'night'",
+                "Pays attention for 5 to 10 minutes during activities",
+                "Writes some letters in their name",
+                "Names some letters when you point to them"
             ],
             "Motor Skills": [
-                "Stands on one foot for 10 seconds or longer",
-                "Hops and may be able to skip",
-                "Can do a somersault",
-                "Uses a fork and spoon and sometimes a table knife",
-                "Can use the toilet on their own"
+                "Buttons some buttons",
+                "Hops on one foot"
             ]
         }
     }

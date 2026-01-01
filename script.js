@@ -479,7 +479,10 @@ function updateLanguage(lang) {
 
     // Clear results to avoid showing mixed languages
     resultsDiv.innerHTML = '';
-    milestoneResultsDiv.innerHTML = '';
+    const milestoneResults = document.getElementById('milestone-results');
+    if (milestoneResults) {
+        milestoneResults.innerHTML = '';
+    }
 }
 
 // Language button click handlers

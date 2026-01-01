@@ -2,6 +2,12 @@
 
 A web-based tool to track and lookup developmental milestones for children from birth to 6 years old.
 
+## Live Demo
+
+**🌐 [Try it live here!](https://ykshim2013.github.io/Dev_checker/)**
+
+Visit the link above to use the tool directly in your browser - no installation needed!
+
 ## Features
 
 - **Easy Age Input**: Enter age in months or years
@@ -65,10 +71,25 @@ This tool works on all modern web browsers:
 
 ## Installation
 
-No installation required! Simply:
+No installation required! Choose one of these options:
+
+**Option 1: Use GitHub Pages (Recommended)**
+- Visit https://ykshim2013.github.io/Dev_checker/
+- Use the tool directly in your browser
+
+**Option 2: Run Locally**
 1. Download or clone this repository
 2. Open `index.html` in your web browser
 3. Start checking milestones
+
+### Setting Up GitHub Pages
+
+To enable GitHub Pages for this repository:
+1. Go to repository Settings
+2. Navigate to Pages section
+3. Under "Source", select the branch containing your code
+4. Click Save
+5. Your site will be published at the URL shown
 
 ## Future Enhancements
 

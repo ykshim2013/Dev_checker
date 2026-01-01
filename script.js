@@ -449,3 +449,235 @@ function showNoResults() {
 
 // Initialize - focus on input
 ageInput.focus();
+
+// ==================== REVERSE MILESTONE LOOKUP ====================
+
+// Build reverse lookup: milestone text -> age info
+const milestoneMap = new Map();
+
+milestones.forEach(ageGroup => {
+    for (const [category, items] of Object.entries(ageGroup.categories)) {
+        items.forEach(milestoneText => {
+            const key = milestoneText.toLowerCase();
+            if (!milestoneMap.has(key)) {
+                milestoneMap.set(key, {
+                    text: milestoneText,
+                    ageRange: ageGroup.ageRange,
+                    minMonths: ageGroup.minMonths,
+                    maxMonths: ageGroup.maxMonths,
+                    category: category
+                });
+            }
+        });
+    }
+});
+
+// Get all milestone texts for autocomplete
+const allMilestoneTexts = Array.from(milestoneMap.values()).map(m => m.text);
+
+// Tab switching
+const tabButtons = document.querySelectorAll('.tab-button');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const tabName = button.getAttribute('data-tab');
+
+        // Update active states
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        button.classList.add('active');
+        document.getElementById(tabName).classList.add('active');
+    });
+});
+
+// Milestone lookup elements
+const milestoneInput = document.getElementById('milestone-input');
+const milestoneSuggestions = document.getElementById('milestone-suggestions');
+const achievedAgeInput = document.getElementById('achieved-age');
+const achievedUnitSelect = document.getElementById('achieved-unit');
+const checkMilestoneBtn = document.getElementById('check-milestone-btn');
+const milestoneResultsDiv = document.getElementById('milestone-results');
+
+// Autocomplete functionality
+milestoneInput.addEventListener('input', () => {
+    const searchText = milestoneInput.value.toLowerCase().trim();
+
+    if (searchText.length < 2) {
+        milestoneSuggestions.classList.remove('active');
+        milestoneSuggestions.innerHTML = '';
+        return;
+    }
+
+    // Find matching milestones
+    const matches = allMilestoneTexts.filter(text =>
+        text.toLowerCase().includes(searchText)
+    ).slice(0, 10); // Limit to 10 suggestions
+
+    if (matches.length > 0) {
+        milestoneSuggestions.innerHTML = matches.map(text =>
+            `<div class="suggestion-item">${text}</div>`
+        ).join('');
+        milestoneSuggestions.classList.add('active');
+
+        // Add click handlers to suggestions
+        milestoneSuggestions.querySelectorAll('.suggestion-item').forEach(item => {
+            item.addEventListener('click', () => {
+                milestoneInput.value = item.textContent;
+                milestoneSuggestions.classList.remove('active');
+            });
+        });
+    } else {
+        milestoneSuggestions.classList.remove('active');
+    }
+});
+
+// Close suggestions when clicking outside
+document.addEventListener('click', (e) => {
+    if (!milestoneInput.contains(e.target) && !milestoneSuggestions.contains(e.target)) {
+        milestoneSuggestions.classList.remove('active');
+    }
+});
+
+// Check milestone button
+checkMilestoneBtn.addEventListener('click', checkMilestoneAge);
+milestoneInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        checkMilestoneAge();
+    }
+});
+
+function checkMilestoneAge() {
+    const searchText = milestoneInput.value.trim();
+
+    if (!searchText) {
+        showMilestoneError('Please enter a milestone to search.');
+        return;
+    }
+
+    // Find the milestone
+    const milestoneKey = searchText.toLowerCase();
+    let milestoneInfo = milestoneMap.get(milestoneKey);
+
+    // If exact match not found, try partial match
+    if (!milestoneInfo) {
+        const partialMatches = Array.from(milestoneMap.entries())
+            .filter(([key]) => key.includes(milestoneKey));
+
+        if (partialMatches.length === 1) {
+            milestoneInfo = partialMatches[0][1];
+        } else if (partialMatches.length > 1) {
+            showMilestoneError('Multiple milestones found. Please be more specific or select from suggestions.');
+            return;
+        } else {
+            showMilestoneError('Milestone not found. Please check spelling or select from suggestions.');
+            return;
+        }
+    }
+
+    // Get achieved age if provided
+    const achievedAge = parseFloat(achievedAgeInput.value);
+    const achievedUnit = achievedUnitSelect.value;
+
+    displayMilestoneInfo(milestoneInfo, achievedAge, achievedUnit);
+}
+
+function displayMilestoneInfo(milestoneInfo, achievedAge, achievedUnit) {
+    milestoneResultsDiv.innerHTML = '';
+
+    const card = document.createElement('div');
+    card.className = 'milestone-card';
+
+    const heading = document.createElement('h2');
+    heading.textContent = milestoneInfo.text;
+
+    const category = document.createElement('div');
+    category.className = 'age-range';
+    category.textContent = `${getCategoryIcon(milestoneInfo.category)} ${milestoneInfo.category}`;
+
+    const ageInfo = document.createElement('div');
+    ageInfo.className = 'comparison-info';
+
+    const typicalMinMonths = milestoneInfo.minMonths;
+    const typicalMaxMonths = milestoneInfo.maxMonths;
+    const avgMonths = (typicalMinMonths + typicalMaxMonths) / 2;
+
+    ageInfo.innerHTML = `
+        <strong>Typical Age Range:</strong> ${milestoneInfo.ageRange}
+        (${typicalMinMonths}-${typicalMaxMonths} months)
+    `;
+
+    card.appendChild(heading);
+    card.appendChild(category);
+    card.appendChild(ageInfo);
+
+    // If achieved age is provided, add comparison
+    if (achievedAge && achievedAge > 0) {
+        let achievedMonths = achievedAge;
+        if (achievedUnit === 'years') {
+            achievedMonths = achievedAge * 12;
+        }
+
+        const comparison = document.createElement('div');
+        comparison.className = 'comparison-info';
+
+        let status = '';
+        let statusClass = '';
+        let message = '';
+
+        // Calculate difference
+        const diffFromAvg = achievedMonths - avgMonths;
+        const diffFromMax = achievedMonths - typicalMaxMonths;
+
+        if (achievedMonths <= typicalMaxMonths) {
+            // Within or before typical range
+            if (achievedMonths < typicalMinMonths) {
+                status = 'Early Development';
+                statusClass = 'status-early';
+                const monthsEarly = typicalMinMonths - achievedMonths;
+                message = `Achieved ${monthsEarly.toFixed(1)} month(s) earlier than typical range.`;
+            } else {
+                status = 'On Track';
+                statusClass = 'status-on-track';
+                message = 'Development is within the typical range.';
+            }
+        } else {
+            // After typical range
+            const monthsLate = achievedMonths - typicalMaxMonths;
+
+            if (monthsLate <= 3) {
+                status = 'Slightly Delayed';
+                statusClass = 'status-delayed';
+                message = `Achieved ${monthsLate.toFixed(1)} month(s) after typical range. This is usually not a concern, but mention it at the next checkup.`;
+            } else {
+                status = 'May Need Attention';
+                statusClass = 'status-concern';
+                message = `Achieved ${monthsLate.toFixed(1)} month(s) after typical range. Consider discussing with a healthcare provider.`;
+            }
+        }
+
+        comparison.innerHTML = `
+            <strong>Age Achieved:</strong> ${achievedAge} ${achievedUnit} (${achievedMonths} months)<br>
+            <div class="status-badge ${statusClass}">${status}</div>
+            <p style="margin-top: 10px;">${message}</p>
+        `;
+
+        card.appendChild(comparison);
+    } else {
+        const hint = document.createElement('div');
+        hint.className = 'comparison-info';
+        hint.innerHTML = `<em>Tip: Enter the age when this milestone was achieved to see if development is on track.</em>`;
+        card.appendChild(hint);
+    }
+
+    milestoneResultsDiv.appendChild(card);
+}
+
+function showMilestoneError(message) {
+    milestoneResultsDiv.innerHTML = `
+        <div class="error-message">
+            <strong>Error:</strong> ${message}
+        </div>
+    `;
+}

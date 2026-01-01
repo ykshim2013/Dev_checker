@@ -13,7 +13,13 @@
             <p class="subtitle">Track your child's developmental progress</p>
         </header>
 
-        <div class="input-section">
+        <div class="tabs">
+            <button class="tab-button active" data-tab="age-lookup">Age → Milestones</button>
+            <button class="tab-button" data-tab="milestone-lookup">Milestone → Age</button>
+        </div>
+
+        <div id="age-lookup" class="tab-content active">
+            <div class="input-section">
             <div class="input-group">
                 <label for="age-input">Enter Age:</label>
                 <input type="number" id="age-input" min="0" max="240" placeholder="Enter age" />
@@ -30,7 +36,35 @@
             <button id="check-btn" class="check-button">Check Milestones</button>
         </div>
 
-        <div id="results" class="results-section"></div>
+            <div id="results" class="results-section"></div>
+        </div>
+
+        <div id="milestone-lookup" class="tab-content">
+            <div class="input-section">
+                <div class="input-group full-width">
+                    <label for="milestone-input">Search Milestone:</label>
+                    <input type="text" id="milestone-input" placeholder="e.g., independent sitting, walks alone" />
+                    <div id="milestone-suggestions" class="suggestions"></div>
+                </div>
+
+                <div class="input-group">
+                    <label for="achieved-age">Age Achieved (optional):</label>
+                    <input type="number" id="achieved-age" min="0" max="240" placeholder="Enter age" />
+                </div>
+
+                <div class="input-group">
+                    <label for="achieved-unit">Unit:</label>
+                    <select id="achieved-unit">
+                        <option value="months">Months</option>
+                        <option value="years">Years</option>
+                    </select>
+                </div>
+
+                <button id="check-milestone-btn" class="check-button">Check Milestone</button>
+            </div>
+
+            <div id="milestone-results" class="results-section"></div>
+        </div>
 
         <footer>
             <p class="disclaimer">

@@ -37,6 +37,43 @@ h1 {
     font-size: 1.1em;
 }
 
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.tab-button:hover {
+    color: #667eea;
+}
+
+.tab-button.active {
+    color: #667eea;
+    border-bottom: 3px solid #667eea;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
 .input-section {
     display: flex;
     gap: 15px;
@@ -58,6 +95,7 @@ h1 {
 }
 
 input[type="number"],
+input[type="text"],
 select {
     width: 100%;
     padding: 12px 15px;
@@ -68,9 +106,49 @@ select {
 }
 
 input[type="number"]:focus,
+input[type="text"]:focus,
 select:focus {
     outline: none;
     border-color: #667eea;
+}
+
+.input-group.full-width {
+    flex: 100%;
+    position: relative;
+}
+
+/* Suggestions */
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.suggestions.active {
+    display: block;
+}
+
+.suggestion-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestion-item:hover {
+    background: #f8f9fa;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
 }
 
 .check-button {
@@ -159,6 +237,52 @@ select:focus {
     padding: 15px;
     border-radius: 8px;
     color: #cc0000;
+}
+
+/* Status indicators */
+.status-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.status-on-track {
+    background: #d4edda;
+    color: #155724;
+    border: 2px solid #c3e6cb;
+}
+
+.status-early {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 2px solid #bee5eb;
+}
+
+.status-delayed {
+    background: #fff3cd;
+    color: #856404;
+    border: 2px solid #ffeaa7;
+}
+
+.status-concern {
+    background: #f8d7da;
+    color: #721c24;
+    border: 2px solid #f5c6cb;
+}
+
+.comparison-info {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 0.95em;
+}
+
+.comparison-info strong {
+    color: #667eea;
 }
 
 .no-results {

@@ -24,6 +24,37 @@ body {
 header {
     text-align: center;
     margin-bottom: 40px;
+    position: relative;
+}
+
+.language-selector {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.lang-btn {
+    background: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.lang-btn:hover {
+    background: #e9ecef;
+    border-color: #667eea;
+}
+
+.lang-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
 }
 
 h1 {

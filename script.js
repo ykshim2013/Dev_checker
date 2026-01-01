@@ -349,7 +349,7 @@ function checkMilestones() {
 
     // Validate input
     if (!age || age < 0) {
-        showError('Please enter a valid age.');
+        showError(t('error-valid-age'));
         return;
     }
 
@@ -361,7 +361,7 @@ function checkMilestones() {
 
     // Validate age range
     if (ageInMonths > 72) {
-        showError('This tool covers developmental milestones up to 6 years (72 months).');
+        showError(t('error-age-limit'));
         return;
     }
 
@@ -385,14 +385,14 @@ function displayMilestones(matchingMilestones, ageInMonths, unit, originalAge) {
         const card = document.createElement('div');
         card.className = 'milestone-card';
 
-        let ageDisplay = `${originalAge} ${unit}`;
+        let ageDisplay = `${originalAge} ${t('option-' + unit)}`;
 
         const heading = document.createElement('h2');
-        heading.textContent = 'Developmental Milestones';
+        heading.textContent = t('developmental-milestones');
 
         const ageRange = document.createElement('div');
         ageRange.className = 'age-range';
-        ageRange.textContent = `Age: ${ageDisplay} (${milestone.ageRange})`;
+        ageRange.textContent = `${t('age')}: ${ageDisplay} (${milestone.ageRange})`;
 
         card.appendChild(heading);
         card.appendChild(ageRange);
@@ -403,7 +403,7 @@ function displayMilestones(matchingMilestones, ageInMonths, unit, originalAge) {
             categoryDiv.className = 'milestone-category';
 
             const categoryHeading = document.createElement('h3');
-            categoryHeading.textContent = getCategoryIcon(categoryName) + ' ' + categoryName;
+            categoryHeading.textContent = getCategoryIcon(categoryName) + ' ' + t(categoryName);
 
             const itemsList = document.createElement('ul');
             items.forEach(item => {
@@ -442,13 +442,56 @@ function showError(message) {
 function showNoResults() {
     resultsDiv.innerHTML = `
         <div class="no-results">
-            <p>No milestones found for this age range.</p>
+            <p>${t('no-milestones-found')}</p>
         </div>
     `;
 }
 
 // Initialize - focus on input
 ageInput.focus();
+
+// ==================== LANGUAGE SWITCHING ====================
+
+// Update all text elements with translations
+function updateLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('selectedLanguage', lang);
+
+    // Update all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        element.textContent = t(key, lang);
+    });
+
+    // Update placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
+        element.placeholder = t(key, lang);
+    });
+
+    // Update language buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-lang') === lang) {
+            btn.classList.add('active');
+        }
+    });
+
+    // Clear results to avoid showing mixed languages
+    resultsDiv.innerHTML = '';
+    milestoneResultsDiv.innerHTML = '';
+}
+
+// Language button click handlers
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        updateLanguage(lang);
+    });
+});
+
+// Initialize language on page load
+updateLanguage(currentLanguage);
 
 // ==================== REVERSE MILESTONE LOOKUP ====================
 
@@ -552,7 +595,7 @@ function checkMilestoneAge() {
     const searchText = milestoneInput.value.trim();
 
     if (!searchText) {
-        showMilestoneError('Please enter a milestone to search.');
+        showMilestoneError(t('error-enter-milestone'));
         return;
     }
 
@@ -568,10 +611,10 @@ function checkMilestoneAge() {
         if (partialMatches.length === 1) {
             milestoneInfo = partialMatches[0][1];
         } else if (partialMatches.length > 1) {
-            showMilestoneError('Multiple milestones found. Please be more specific or select from suggestions.');
+            showMilestoneError(t('error-multiple-found'));
             return;
         } else {
-            showMilestoneError('Milestone not found. Please check spelling or select from suggestions.');
+            showMilestoneError(t('error-not-found'));
             return;
         }
     }
@@ -594,7 +637,7 @@ function displayMilestoneInfo(milestoneInfo, achievedAge, achievedUnit) {
 
     const category = document.createElement('div');
     category.className = 'age-range';
-    category.textContent = `${getCategoryIcon(milestoneInfo.category)} ${milestoneInfo.category}`;
+    category.textContent = `${getCategoryIcon(milestoneInfo.category)} ${t(milestoneInfo.category)}`;
 
     const ageInfo = document.createElement('div');
     ageInfo.className = 'comparison-info';
@@ -604,8 +647,8 @@ function displayMilestoneInfo(milestoneInfo, achievedAge, achievedUnit) {
     const avgMonths = (typicalMinMonths + typicalMaxMonths) / 2;
 
     ageInfo.innerHTML = `
-        <strong>Typical Age Range:</strong> ${milestoneInfo.ageRange}
-        (${typicalMinMonths}-${typicalMaxMonths} months)
+        <strong>${t('typical-age-range')}:</strong> ${milestoneInfo.ageRange}
+        (${typicalMinMonths}-${typicalMaxMonths} ${t('months')})
     `;
 
     card.appendChild(heading);
@@ -633,32 +676,32 @@ function displayMilestoneInfo(milestoneInfo, achievedAge, achievedUnit) {
         if (achievedMonths <= typicalMaxMonths) {
             // Within or before typical range
             if (achievedMonths < typicalMinMonths) {
-                status = 'Early Development';
+                status = t('status-early');
                 statusClass = 'status-early';
                 const monthsEarly = typicalMinMonths - achievedMonths;
-                message = `Achieved ${monthsEarly.toFixed(1)} month(s) earlier than typical range.`;
+                message = `${t('achieved')} ${monthsEarly.toFixed(1)} ${t('month(s)')} ${t('earlier-than-typical')}.`;
             } else {
-                status = 'On Track';
+                status = t('status-on-track');
                 statusClass = 'status-on-track';
-                message = 'Development is within the typical range.';
+                message = t('within-typical-range');
             }
         } else {
             // After typical range
             const monthsLate = achievedMonths - typicalMaxMonths;
 
             if (monthsLate <= 3) {
-                status = 'Slightly Delayed';
+                status = t('status-delayed');
                 statusClass = 'status-delayed';
-                message = `Achieved ${monthsLate.toFixed(1)} month(s) after typical range. This is usually not a concern, but mention it at the next checkup.`;
+                message = `${t('achieved')} ${monthsLate.toFixed(1)} ${t('month(s)')} ${t('after-typical-range')}`;
             } else {
-                status = 'May Need Attention';
+                status = t('status-concern');
                 statusClass = 'status-concern';
-                message = `Achieved ${monthsLate.toFixed(1)} month(s) after typical range. Consider discussing with a healthcare provider.`;
+                message = `${t('achieved')} ${monthsLate.toFixed(1)} ${t('month(s)')} ${t('after-typical-concern')}`;
             }
         }
 
         comparison.innerHTML = `
-            <strong>Age Achieved:</strong> ${achievedAge} ${achievedUnit} (${achievedMonths} months)<br>
+            <strong>${t('age-achieved')}:</strong> ${achievedAge} ${t('option-' + achievedUnit)} (${achievedMonths} ${t('months')})<br>
             <div class="status-badge ${statusClass}">${status}</div>
             <p style="margin-top: 10px;">${message}</p>
         `;
@@ -667,7 +710,7 @@ function displayMilestoneInfo(milestoneInfo, achievedAge, achievedUnit) {
     } else {
         const hint = document.createElement('div');
         hint.className = 'comparison-info';
-        hint.innerHTML = `<em>Tip: Enter the age when this milestone was achieved to see if development is on track.</em>`;
+        hint.innerHTML = `<em>${t('tip-enter-age')}</em>`;
         card.appendChild(hint);
     }
 

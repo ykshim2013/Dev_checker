@@ -8,6 +8,14 @@ A web-based tool to track and lookup developmental milestones for children from 
 
 Visit the link above to use the tool directly in your browser - no installation needed!
 
+### Quick Access via QR Code
+
+Scan this QR code with your phone to open the tool instantly:
+
+<p align="center">
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://ykshim2013.github.io/Dev_checker/" alt="QR Code for Dev_checker">
+</p>
+
 ## Features
 
 - **Easy Age Input**: Enter age in months or years

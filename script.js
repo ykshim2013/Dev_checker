@@ -546,8 +546,19 @@ const achievedUnitSelect = document.getElementById('achieved-unit');
 const checkMilestoneBtn = document.getElementById('check-milestone-btn');
 const milestoneResultsDiv = document.getElementById('milestone-results');
 
-// Autocomplete functionality
-milestoneInput.addEventListener('input', () => {
+// Check if all elements exist before adding event listeners
+if (!milestoneInput || !milestoneSuggestions || !achievedAgeInput || !achievedUnitSelect || !checkMilestoneBtn || !milestoneResultsDiv) {
+    console.error('Milestone lookup elements not found:', {
+        milestoneInput: !!milestoneInput,
+        milestoneSuggestions: !!milestoneSuggestions,
+        achievedAgeInput: !!achievedAgeInput,
+        achievedUnitSelect: !!achievedUnitSelect,
+        checkMilestoneBtn: !!checkMilestoneBtn,
+        milestoneResultsDiv: !!milestoneResultsDiv
+    });
+} else {
+    // Autocomplete functionality
+    milestoneInput.addEventListener('input', () => {
     const searchText = milestoneInput.value.toLowerCase().trim();
 
     if (searchText.length < 2) {
@@ -726,4 +737,7 @@ function showMilestoneError(message) {
             <strong>Error:</strong> ${message}
         </div>
     `;
+}
+
+// Close the else block for milestone elements check
 }

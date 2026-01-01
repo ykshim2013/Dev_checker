@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developmental Milestone Checker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Developmental Milestone Checker</h1>
+            <p class="subtitle">Track your child's developmental progress</p>
+        </header>
+
+        <div class="input-section">
+            <div class="input-group">
+                <label for="age-input">Enter Age:</label>
+                <input type="number" id="age-input" min="0" max="240" placeholder="Enter age" />
+            </div>
+
+            <div class="input-group">
+                <label for="unit-select">Unit:</label>
+                <select id="unit-select">
+                    <option value="months">Months</option>
+                    <option value="years">Years</option>
+                </select>
+            </div>
+
+            <button id="check-btn" class="check-button">Check Milestones</button>
+        </div>
+
+        <div id="results" class="results-section"></div>
+
+        <footer>
+            <p class="disclaimer">
+                <strong>Disclaimer:</strong> This tool provides general developmental milestones.
+                Every child develops at their own pace. Consult a healthcare professional for personalized guidance.
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
